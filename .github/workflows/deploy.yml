@@ -1,0 +1,34 @@
+name: Deploy to EC2
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            set -e
+            rm -rf ~/app || true
+            mkdir -p ~/app
+            # Copiamos el repo a la EC2
+            cd ~/app
+            # Clonamos con HTTPS (repo público). Si es privado, lo hacemos diferente.
+            git clone https://github.com/${{ github.repository }} .
+            # Build + run docker
+            cd app
+            docker rm -f web || true
+            docker build -t web:latest .
+            docker run -d --name web -p 80:80 web:latest
+
