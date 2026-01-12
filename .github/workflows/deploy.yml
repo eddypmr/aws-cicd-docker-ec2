@@ -28,7 +28,7 @@ jobs:
             git clone https://github.com/${{ github.repository }} .
             # Build & run
             cd app
-            docker rm -f web || true
-            docker build -t web:latest .
-            docker run -d --name web -p 80:80 web:latest
+            sudo docker rm -f web || true
+            sudo docker build -t web:latest .
+            sudo docker run -d --name web -p 80:80 web:latest
 
