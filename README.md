@@ -46,6 +46,7 @@ Docker container (Nginx serving the app)
 ---
 
 ## Repository Structure
+```
 .
 ├── app/
 │ ├── Dockerfile
@@ -56,7 +57,7 @@ Docker container (Nginx serving the app)
 └── .github/
  └── workflows/
   └── deploy.yml
-
+```
 ---
 
 ## Infrastructure (Terraform)
