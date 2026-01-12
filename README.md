@@ -17,7 +17,7 @@ The infrastructure is provisioned using **Terraform**, following Infrastructure 
 ---
 
 ## Architecture Overview
-
+```
 GitHub (push to main)
 ↓
 GitHub Actions (CI/CD pipeline)
@@ -27,7 +27,7 @@ SSH connection
 AWS EC2 (Docker installed)
 ↓
 Docker container (Nginx serving the app)
-
+```
 ---
 
 
