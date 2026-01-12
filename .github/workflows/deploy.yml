@@ -23,7 +23,7 @@ jobs:
             rm -rf ~/app || true
             mkdir -p ~/app
             
-            tar -czf /tmp/repo.tgz
+            tar -czf /tmp/repo.tgz .
             cd ~/app
             git clone https://github.com/${{ github.repository }} .
             # Build & run
